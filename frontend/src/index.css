@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  margin: 0;
+  @apply bg-slate-50 text-slate-900;
+}
+
+/* Marquee — render the inner content exactly twice, then translate the track
+   from 0 to -50%. The second copy lands precisely where the first started,
+   producing a seamless infinite scroll. Defined in raw CSS (not Tailwind's
+   theme.extend) so it works regardless of config-reload timing. */
+@keyframes direkt-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: direkt-marquee 45s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.mask-fade {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+          mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
